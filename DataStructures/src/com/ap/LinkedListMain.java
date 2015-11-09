@@ -6,12 +6,8 @@ public class LinkedListMain {
 	
 	public static void main(String[] args) {
 		
-		Node node = new Node(1);
-		add(node);
-		printList();
-		
-		add(new Node(3));
-		
+		add(1);
+		add(2);
 		printList();
 	}
 	
@@ -26,21 +22,11 @@ public class LinkedListMain {
 		}
 	}
 	
-	public static void add(Node n) {
+	public static void add(int data) {
 		
-		Node node;
-		
-		if(head == null) {
-			head = n;
-			return;
-		}
-		node = head;
-		
-		while(node.getNextNode() != null) {
-			node = node.getNextNode();
-		}
-		
-		node.setNextNode(n);
+		Node n = new Node(data);
+		n.setNextNode(head);
+		head = n;
 	}
 
 }
