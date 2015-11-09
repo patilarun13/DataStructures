@@ -18,7 +18,7 @@ public class LinkedListMain {
 		//removeNodeAt(3);
 		//printList();
 		//System.out.println("Linked list size: " +getSize());
-		swapNodes(1,2);
+		swapNodes(0,2);
 		printList();
 	}
 	
@@ -83,10 +83,9 @@ public class LinkedListMain {
 		}
 	}
 
-	//FIXME: WIP
 	public static void swapNodes(int firstNodePosition, int secondNodePosition) throws Exception {
-		
-		
+		System.out.println("Printing linked list before swap");
+		printList();
 		if(head == null) {
 			throw new Exception("Linked list empty");
 		}
@@ -95,9 +94,9 @@ public class LinkedListMain {
 		}
 		
 		Node node = head;
-		Node firstNode = node;
-		Node secondNode = node;
-		Node prevNode = node;
+		Node firstNode = null;
+		Node secondNode = null;
+		Node prevNode = null;
 		Node firstNodePrev = null;
 		Node secondNodePrev = null;
 		
@@ -112,17 +111,17 @@ public class LinkedListMain {
 				secondNode = node;
 				secondNodePrev = prevNode;
 			}
-			if(firstNodePrev != null && secondNodePrev != null) {
+			if(firstNode != null && secondNode != null) {
 				break;
 			}
 			prevNode = node;
 			node = node.getNextNode();
 			i++;
 		}
-		if(firstNodePrev == null) {
+		if(firstNode == null) {
 			throw new Exception("First node does not exists");
 		}
-		if(secondNodePrev == null) {
+		if(secondNode == null) {
 			throw new Exception("Second node does not exists");
 		}
 		
@@ -133,16 +132,17 @@ public class LinkedListMain {
 		}
 		
 		if(firstNode == head) {
-			secondNode.setNextNode(head.getNextNode());
 			head = secondNode;
 			secondNodePrev.setNextNode(firstNode);
-		}
-		
-		if(secondNode == head) {
-			firstNode.setNextNode(head.getNextNode());
+		}else if(secondNode == head) {
 			head = firstNode;
 			firstNodePrev.setNextNode(secondNode);
 		}
+		
+		//This is needed because first node next should be now second node next and vice versa.
+		Node tempNode = secondNode.getNextNode();
+		secondNode.setNextNode(firstNode.getNextNode());
+		firstNode.setNextNode(tempNode);
 		
 	}
 
