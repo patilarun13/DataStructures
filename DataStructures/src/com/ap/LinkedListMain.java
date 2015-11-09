@@ -6,14 +6,12 @@ public class LinkedListMain {
 	
 	public static void main(String[] args) {
 		
-		LinkedListMain linkedListMain = new LinkedListMain();
+		Node node = new Node(1);
+		add(node);
+		printList();
 		
-		linkedListMain.head = new Node(1);
-		Node node2 = new Node(2);
-		Node node3 = new Node(3);
+		add(new Node(3));
 		
-		head.setNextNode(node2);
-		node2.setNextNode(node3);
 		printList();
 	}
 	
@@ -26,6 +24,23 @@ public class LinkedListMain {
 			System.out.println(node.getData());
 			node = node.getNextNode();
 		}
+	}
+	
+	public static void add(Node n) {
+		
+		Node node;
+		
+		if(head == null) {
+			head = n;
+			return;
+		}
+		node = head;
+		
+		while(node.getNextNode() != null) {
+			node = node.getNextNode();
+		}
+		
+		node.setNextNode(n);
 	}
 
 }
