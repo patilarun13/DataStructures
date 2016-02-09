@@ -5,7 +5,7 @@ public class BinarySearch {
 	public static void main(String[] args) {
 
 		int a[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 };
-		int elementToSearch = 16;
+		int elementToSearch = 6;
 		int leftPos = 0;
 		int rightPos = a.length - 1;
 		int pos = binarySearch(elementToSearch, a, leftPos, rightPos);
@@ -28,11 +28,11 @@ public class BinarySearch {
 		} else if (element == elementToSearch) {
 			return midPos;
 		} else if (elementToSearch < element) {
-			midPos = midPos - 1;
-			return (binarySearch(elementToSearch, a, l, midPos));
+			r = midPos - 1;
+			return (binarySearch(elementToSearch, a, l, r));
 		} else if (elementToSearch > element) {
-			midPos = midPos + 1;
-			return (binarySearch(elementToSearch, a, midPos, r));
+			l = midPos + 1;
+			return (binarySearch(elementToSearch, a, l, r));
 		} else {
 			return -1;// to avoid stackoverflow just in case if it happens
 		}
